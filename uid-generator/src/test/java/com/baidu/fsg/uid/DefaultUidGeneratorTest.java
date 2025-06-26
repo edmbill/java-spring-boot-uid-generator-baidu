@@ -20,7 +20,7 @@ import com.baidu.fsg.uid.impl.DefaultUidGenerator;
 
 /**
  * Test for {@link DefaultUidGenerator}
- * 
+ *
  * @author yutianbao
  */
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -30,7 +30,8 @@ public class DefaultUidGeneratorTest {
     private static final boolean VERBOSE = true;
     private static final int THREADS = Runtime.getRuntime().availableProcessors() << 1;
 
-    @Resource
+    @Resource(name = "defaultUidGenerator")
+//    @Resource(name = "customDefaultUidGenerator")
     private UidGenerator uidGenerator;
 
     /**
@@ -50,7 +51,7 @@ public class DefaultUidGeneratorTest {
 
     /**
      * Test for parallel generate
-     * 
+     *
      * @throws InterruptedException
      */
     @Test

@@ -70,6 +70,8 @@ public class DefaultUidGenerator implements UidGenerator, InitializingBean {
     protected String epochStr = "2016-05-20";
     protected long epochSeconds = TimeUnit.MILLISECONDS.toSeconds(1463673600000L);
 
+    protected long baseValue = 0L;
+
     /** Stable fields after spring bean initializing */
     protected BitsAllocator bitsAllocator;
     protected long workerId;
@@ -157,7 +159,7 @@ public class DefaultUidGenerator implements UidGenerator, InitializingBean {
         lastSecond = currentSecond;
 
         // Allocate bits for UID
-        return bitsAllocator.allocate(currentSecond - epochSeconds, workerId, sequence);
+        return baseValue + bitsAllocator.allocate(currentSecond - epochSeconds, workerId, sequence);
     }
 
     /**
@@ -214,5 +216,9 @@ public class DefaultUidGenerator implements UidGenerator, InitializingBean {
             this.epochStr = epochStr;
             this.epochSeconds = TimeUnit.MILLISECONDS.toSeconds(DateUtils.parseByDayPattern(epochStr).getTime());
         }
+    }
+
+    public void setBaseValue(long baseValue) {
+        this.baseValue = baseValue;
     }
 }
