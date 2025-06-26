@@ -33,4 +33,9 @@
 
     </bean>
 
+    <bean id="defaultUidGenerator" class="com.baidu.fsg.uid.impl.DefaultUidGenerator">
+        <property name="workerIdAssigner" ref="disposableWorkerIdAssigner" />
+        <property name="epochStr" value="2020-03-17"/>
+    </bean>
+
 </beans>

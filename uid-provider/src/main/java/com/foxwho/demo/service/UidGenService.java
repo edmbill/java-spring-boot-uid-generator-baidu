@@ -8,7 +8,9 @@ import javax.annotation.Resource;
 
 @Service
 public class UidGenService {
-    @Resource(name = "cachedUidGenerator")
+
+    @Resource(name = "defaultUidGenerator")
+//    @Resource(name = "cachedUidGenerator")
     private UidGenerator uidGenerator;
 
     public long getUid() {
